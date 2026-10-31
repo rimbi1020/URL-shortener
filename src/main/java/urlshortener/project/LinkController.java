@@ -18,7 +18,7 @@ public class LinkController {
 
     public record CreateLinkRequest(String url) {}
     public record CreateLinkResponse(String code) {}
-    public record StatsResponce(String code, String url, long clicks, Instant createAt) {}
+    public record StatsResponse(String code, String url, long clicks, Instant createAt) {}
 
     private final LinkService linkService;
 
@@ -43,12 +43,12 @@ public class LinkController {
     }
 
     @GetMapping("/api/links/{code}/stats")
-    public ResponseEntity<StatsResponce> stats(@PathVariable String code) {
+    public ResponseEntity<StatsResponse> stats(@PathVariable String code) {
         Optional<Link> link = linkService.find(code);
         if (link.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         Link l = link.get();
-        return ResponseEntity.ok(new StatsResponce(l.getCode(), l.getUrl(), l.getClicks(), l.getCreateAt()));
+        return ResponseEntity.ok(new StatsResponse(l.getCode(), l.getUrl(), l.getClicks(), l.getCreateAt()));
     }
 }

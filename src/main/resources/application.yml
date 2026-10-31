@@ -1,6 +1,15 @@
 spring:
   application:
     name: urlshortener
+  
+  datasource:
+    url: jdbc:mysql://localhost:3307/urlshortener 
+    username: app
+    password: app
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false 
 
 app:
   code-length: 5

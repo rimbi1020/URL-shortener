@@ -1,0 +1,8 @@
+CREATE TABLE links (
+    id BIGINT  AUTO_INCREMENT  PRIMARY KEY,
+    code VARCHAR(16) NOT NUll,
+    url VARCHAR(2048) NOT NULL,
+    clicks BIGINT NOT NULL  DEFAULT 0,
+    created_at DATETIME(6) NOT NULL,
+    CONSTRAINT uk_links_code UNIQUE (code)
+)
